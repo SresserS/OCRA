@@ -84,14 +84,14 @@
         <div class="container">
           <div id="results-carousel" class="carousel results-carousel">
             <!-- Placeholder for videos - can be added later -->
-            <!-- 
+            
             <div class="item item-video1">
               <video poster="" id="video1" autoplay muted loop playsinline height="100%">
-                <source src="./static/videos/teaser/video1.mp4"
+                <source src="./static/videos/ocra.mp4"
                         type="video/mp4">
               </video>
             </div>
-            -->
+           
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                [Abstract will be added here]
+                We present OCRA, an object-centric framework for video-based human-to-robot action transfer that learns directly from human demonstration videos to enable robust manipulation. Object-centric learning emphasizes task-relevant objects and their interactions while filtering out irrelevant background, providing a natural and scalable way to teach robots. OCRA leverages multi-view RGB videos, the state-of-the-art 3D foundation model VGGT, and advanced detection and segmentation models to reconstruct object-centric 3D point clouds, capturing rich interactions between objects. To handle properties not easily perceived by vision alone, we incorporate tactile priors via a large-scale dataset of over one million tactile images. These 3D and tactile priors are fused through a multimodal module (ResFiLM) and fed into a Diffusion Policy to generate robust manipulation actions. Extensive experiments on both vision-only and visuo-tactile tasks show that OCRA significantly outperforms existing baselines and ablations, demonstrating its effectiveness for learning from human demonstration videos.
               </p>
             </div>
           </div>
@@ -123,11 +123,18 @@
                     <h3 class="title is-3">Method</h3>
                     <div class="content has-text-justified">
                         <!-- Add framework image here when available -->
-                        <!-- 
+                        
                         <img src="static/images/framework.png" alt="Method" style="max-width: 100%; height: auto; margin-top: 20px;">
-                        -->
+                       
                         <p>
-                          [Method description will be added here]
+                            The left column illustrates our human demonstration collection system. Two RGB cameras capture demonstration videos, while the blue box highlights a portable tactile gripper for tactile data collection, which also records fingertip tactile images used to build our large-scale tactile dataset (shown at the bottom).
+
+                            The first row depicts how OCRA processes multi-view RGB inputs to obtain object-centric 3D priors. We first reconstruct the 3D scene using VGGT, followed by bi-view metric depth prediction for world-scale alignment. GroundingDINO and SAM2 then provide object segmentation masks, divided into a Manipulable Object Mask (for target objects) and a Context Object Mask (for surrounding objects). These are used to extract visual object-centric representations across modalities (segmentation, point cloud).
+                            
+                            The middle of the second row shows tactile-prior extraction via Tactile Encoder pretraining under a Masked Autoencoder paradigm.
+                            
+                            The right of the second row presents policy deployment. Multi-view RGB and tactile images are encoded into geometric and tactile features, which are fused by ResFiLM and passed to a Diffusion Policy. The policy predicts actions through iterative denoising of noisy action samples.
+                            
                         </p>
                     </div>
                 </div>
